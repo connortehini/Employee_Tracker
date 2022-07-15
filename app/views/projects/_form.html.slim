@@ -3,5 +3,7 @@
     = form.label :job
   div 
     = form.text_field :job
+    -@project.errors.full_messages_for(:job).each do |message|
+      = message
   div 
     = form.submit

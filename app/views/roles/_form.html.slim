@@ -3,10 +3,14 @@
     = form.label :email
   div 
     = form.text_field :email
+    - @user.errors.full_messages_for(:email).each do |message|
+      = message
   div 
     = form.label :password
   div 
     = form.password_field :password
+    - @user.errors.full_messages_for(:password).each do |message|
+      = message
   div 
     = form.label :role
   div 
