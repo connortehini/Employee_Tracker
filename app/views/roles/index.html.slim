@@ -1,0 +1,12 @@
+h1 Users 
+
+ul 
+  - @users.each do |end_user|
+    li = end_user.email
+    li = link_to 'Edit User', edit_role_path(end_user)
+    div
+      li = link_to 'Delete User', role_path(end_user), method: :delete, data: {confirm: "Are you sure you want to delete this user"}
+
+
+li  
+  = link_to 'return home', root_path 

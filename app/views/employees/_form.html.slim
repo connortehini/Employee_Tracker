@@ -1,0 +1,13 @@
+= form_with model: employee do |form|
+  div 
+    = form.label :name
+  div 
+    = form.text_field :name
+    - @employee.errors.full_messages_for(:name).each do |message|
+      = message
+  div 
+    = form.label :division_id
+  div 
+    = form.select :division_id, Division.pluck(:title, :id)
+  div 
+    = form.submit

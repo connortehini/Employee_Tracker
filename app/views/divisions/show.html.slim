@@ -1,0 +1,21 @@
+h1 Division 
+
+h4 
+  = @division.title
+
+h1 The following Employee's are in this division 
+
+ul 
+  - @employees.each do |employee|
+    li = link_to employee.name, employee
+
+
+
+li 
+  = link_to 'Edit Division', edit_division_path
+
+li 
+  = link_to 'Delete Divsion', division_path, method: :delete, data: {confirm: 'Are you sure?'}
+
+li 
+  = link_to "Return Home", root_path

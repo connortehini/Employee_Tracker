@@ -1,0 +1,10 @@
+h1 Projects
+
+ul 
+  - @projects.each do |project|
+    li = link_to project.job, project 
+
+li 
+  = link_to 'Create New Project', new_project_path  
+li 
+  = link_to "Return Home", root_path 

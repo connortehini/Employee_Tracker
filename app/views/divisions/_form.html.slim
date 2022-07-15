@@ -1,0 +1,9 @@
+= form_with model: division do |form|
+  div 
+    = form.label :title
+  div 
+    = form.text_field :title
+    - @division.errors.full_messages_for(:title).each do |message|
+      = message
+  div 
+    = form.submit
