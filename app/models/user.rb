@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  # scope :employee, -> { where(role: 'employee') }
+  # scope :hr_manager, -> { where(role:'hr_manager') }
+
   enum role: {
     employee: 0,
     hr_manager: 1,
