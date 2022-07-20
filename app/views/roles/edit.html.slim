@@ -1,17 +1,17 @@
-h1 Edit User 
+/ h1 Edit User 
 
-= form_with model: @user do  |form|
-  div 
-    = form.label :email
-  div 
-    = form.text_field :email
-  div 
-    = form.label :password
-  div 
-    = form.password_field :password
-  div 
-    = form.label :role
-  div 
-    = form.select(:role, User.roles.keys {|role| [role.titleize,role]})
-  div 
-    = form.submit 
+/ = form_with model: @user do  |form|
+/   div 
+/     = form.label :email
+/   div 
+/     = form.text_field :email
+/   div 
+/     = form.label :password
+/   div 
+/     = form.password_field :password
+/   div 
+/     = form.label :role
+/   div 
+/     = form.select(:role, User.roles.keys {|role| [role.titleize,role]})
+/   div 
+/     = form.submit 

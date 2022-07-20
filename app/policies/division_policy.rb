@@ -5,9 +5,6 @@ class DivisionPolicy < ApplicationPolicy
     end
   end
 
-  def index?
-  end 
-
   def show?
     user.employee? || user.hr_manager? || user.project_manager? || user.super_admin?
   end
@@ -25,7 +22,7 @@ class DivisionPolicy < ApplicationPolicy
   end
 
   def edit?
-    user.hr_manager? || user.super_admin?
+    user.hr_manager? || user.super_admin? 
   end
 
   def destroy?

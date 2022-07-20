@@ -7,7 +7,7 @@ class ProjectsController < ApplicationController
 
   def show 
     @project = Project.find(params[:id])
-    @employees = @project.employees
+    @users = @project.users
     authorize @project
   end 
 
@@ -45,9 +45,8 @@ class ProjectsController < ApplicationController
 
   def destroy
     @project = Project.find(params[:id])
-    
-    @project.destroy
     authorize @project
+    @project.destroy
     redirect_to root_path
   end 
 

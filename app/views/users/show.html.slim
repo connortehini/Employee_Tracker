@@ -1,0 +1,46 @@
+h1 Employee 
+
+h2 Employee Name 
+= @user.name
+
+h2 Email 
+
+= @user.email
+
+h2 Division
+
+= @user.division.title
+
+h2 Role 
+
+= @user.role
+
+h2 Employee Projects 
+
+ul
+-@projects.each do |project|
+  div 
+    li  = project.job
+    li  = link_to 'Remove Project', user_projects_user_path(@user, project_id: project.id) , method: :delete, data: {confirm: 'Are you sure you want to reomve this project'}
+
+
+h2 Assign Project
+
+=form_with url: user_projects_users_path(@user)  do |form|
+  div 
+    = form.label  :project_id
+  div 
+    = form.select :project_id, Project.pluck(:job, :id)
+  div 
+    = form.submit 
+
+ul
+
+li 
+  = link_to 'Edit Employee', edit_user_path 
+  
+li 
+  = link_to 'Delete Employee', role_path, method: :delete, data: {confirm: 'Are you sure?'}
+
+li 
+  = link_to 'Return Home', root_path 

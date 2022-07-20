@@ -6,12 +6,13 @@ class UsersController < ApplicationController
   end
 
   def index 
-    @users = User.all
+    @users = policy_scope(User).all
     authorize @users
   end 
 
   def show 
-    @user = User.find(params[:id])  
+    @user = User.find(params[:id])
+    @projects = @user.projects  
     authorize @user
   end 
 
@@ -33,11 +34,12 @@ class UsersController < ApplicationController
 
   def edit 
     @user = User.find(params[:id])
+    authorize @user
   end 
 
   def update 
     @user = User.find(params[:id])
-
+    authorize @user
     if @user.update(role_params)
       redirect_to roles_path
     else 
@@ -47,12 +49,13 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
+    authorize @user
     @user.destroy
     redirect_to root_path
   end 
 
   private
   def role_params
-    params.require(:user).permit(:email, :password, :role)
+    params.require(:user).permit(:name, :email, :password, :role, :division_id, :user_id)
   end 
 end

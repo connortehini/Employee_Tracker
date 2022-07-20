@@ -2,10 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   root 'divisions#index'
   resources :divisions
-  resources :employees do 
-    resources :employees_projects
+  resources :users do 
+    resources :projects_users
   end 
   resources :projects 
-  resources :users
   resources :roles
 end

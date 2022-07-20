@@ -1,7 +1,7 @@
 class RolesController < ApplicationController
 
   def index 
-    @users = User.all
+    @users = policy_scope(User).all
     authorize @users
   end 
 
@@ -18,7 +18,7 @@ class RolesController < ApplicationController
   def create
     @user = User.new(role_params)
     authorize @user
-
+   
     if @user.save
       redirect_to roles_path
     else 
@@ -46,11 +46,11 @@ class RolesController < ApplicationController
     @user = User.find(params[:id])
     authorize @user
     @user.destroy
-    redirect_to root_path
+    redirect_to roles_path
   end 
 
   private
   def role_params
-    params.permit(:email, :password, :role)
+    params.permit(:name, :email, :password, :role, :division_id, :user_id)
   end 
 end

@@ -7,7 +7,7 @@ class DivisionsController < ApplicationController
 
   def show 
     @division = Division.find(params[:id])
-    @employees = @division.employees
+    @users = @division.users
     authorize @division
   end 
 
@@ -44,9 +44,9 @@ class DivisionsController < ApplicationController
 
   def destroy 
     @division = Division.find(params[:id])
+    authorize @division
     @division.destroy
     redirect_to root_path
-    authorize @division
   end 
 
   private 

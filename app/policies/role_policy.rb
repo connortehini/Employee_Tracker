@@ -1,36 +1,30 @@
 class RolePolicy < ApplicationPolicy
-  class Scope < Scope
-    # NOTE: Be explicit about which records you allow access to!
-    # def resolve
-    #   scope.all
-    # end
-  end
 
-  def index?
-    user.super_admin?
+    def index?
+      user.super_admin? || user.hr_manager? || user.project_manager?
     end 
   
     def show?
-      user.super_admin?
+      user.super_admin? || user.hr_manager?
     end
   
     def create?
-      user.super_admin?
+      user.super_admin? || user.hr_manager?
     end
   
     def new?
-      user.super_admin?
+      user.super_admin? || user.hr_manager?
     end
   
     def update?
-      user.super_admin?
+      user.super_admin? || user.hr_manager?
     end
   
     def edit?
-      user.super_admin?
+      user.super_admin? || user.hr_manager?
     end
   
     def destroy?
-      user.super_admin?
+      user.super_admin? || user.hr_manager?
     end
 end

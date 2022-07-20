@@ -1,6 +1,5 @@
 class Project < ApplicationRecord
-  has_many :employees_projects
-  # has_many :employees, through: :employees_projects
-  has_and_belongs_to_many :employees
+  has_many :projects_users
+  has_and_belongs_to_many :users
   validates :job, presence: true
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_14_074119) do
+ActiveRecord::Schema.define(version: 2022_07_18_110934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,27 +21,19 @@ ActiveRecord::Schema.define(version: 2022_07_14_074119) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "employees", force: :cascade do |t|
-    t.string "name"
-    t.bigint "division_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["division_id"], name: "index_employees_on_division_id"
-  end
-
-  create_table "employees_projects", force: :cascade do |t|
-    t.bigint "employee_id", null: false
-    t.bigint "project_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["employee_id"], name: "index_employees_projects_on_employee_id"
-    t.index ["project_id"], name: "index_employees_projects_on_project_id"
-  end
-
   create_table "projects", force: :cascade do |t|
     t.string "job"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "projects_users", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "project_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id"], name: "index_projects_users_on_project_id"
+    t.index ["user_id"], name: "index_projects_users_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -50,14 +42,17 @@ ActiveRecord::Schema.define(version: 2022_07_14_074119) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.bigint "division_id", null: false
+    t.string "name"
+    t.integer "role", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "role", default: 0
+    t.index ["division_id"], name: "index_users_on_division_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "employees", "divisions"
-  add_foreign_key "employees_projects", "employees"
-  add_foreign_key "employees_projects", "projects"
+  add_foreign_key "projects_users", "projects"
+  add_foreign_key "projects_users", "users"
+  add_foreign_key "users", "divisions"
 end

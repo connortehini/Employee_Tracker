@@ -1,5 +1,11 @@
 = form_with url: roles_path do  |form|
   div 
+    = form.label :name
+  div 
+    = form.text_field :name
+    - @user.errors.full_messages_for(:employee).each do |message|
+      = message
+  div 
     = form.label :email
   div 
     = form.text_field :email
@@ -11,6 +17,10 @@
     = form.password_field :password
     - @user.errors.full_messages_for(:password).each do |message|
       = message
+  div 
+    = form.label :division_id
+  div 
+    = form.select :division_id, Division.pluck(:title, :id)
   div 
     = form.label :role
   div 
