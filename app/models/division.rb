@@ -1,4 +1,4 @@
 class Division < ApplicationRecord
   has_many :users, dependent: :destroy
-  validates :title, presence: true
+  validates_presence_of :title, presence: true
 end

@@ -4,7 +4,7 @@ class UserPolicy < ApplicationPolicy
       if user.super_admin?
         scope.all
       else 
-        scope.where(role: 'employee')
+        scope.employee
       end 
     end
   end

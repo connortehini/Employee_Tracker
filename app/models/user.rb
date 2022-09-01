@@ -6,8 +6,8 @@ class User < ApplicationRecord
 
   belongs_to :division
   has_many :projects_users
-  has_and_belongs_to_many :projects
-  validates :name, presence: true
+  has_many :projects, through: :projects_users
+  validates_presence_of :name
 
   enum role: {
     employee: 0,
