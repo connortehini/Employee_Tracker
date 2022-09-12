@@ -5,7 +5,7 @@ class DivisionsController < ApplicationController
   #GET /divisions
   def index 
     @divisions = Division.all
-    json_response(@divisions)
+    # json_response(@divisions)
   end 
 
   #GET /divisions/:id

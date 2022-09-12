@@ -1,21 +1,26 @@
 class ProjectsController < ApplicationController
   
+  #GET /projects
   def index 
     @projects = Project.all
     authorize @projects
+    json_response(@projects)
   end 
 
+  #GET /projects/:id
   def show 
     @project = Project.find(params[:id])
     @users = @project.users
     authorize @project
   end 
-
+  
+  #GET /projects/new
   def new 
     @project = Project.new 
     authorize @project
   end 
 
+  #POST /projects
   def create 
     @project = Project.new(project_params)
     authorize @project
@@ -27,11 +32,13 @@ class ProjectsController < ApplicationController
     end 
   end 
 
+  #GET /projects/:id/edit
   def edit 
     @project = Project.find(params[:id])
     authorize @project
   end 
 
+  #PUT /:projects/:id
   def update 
     @project = Project.find(params[:id])
     authorize @project
@@ -43,6 +50,7 @@ class ProjectsController < ApplicationController
     end 
   end 
 
+  #DELETE /projects/:id
   def destroy
     @project = Project.find(params[:id])
     authorize @project
